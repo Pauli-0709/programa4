@@ -4,9 +4,7 @@ section .data
 	mensaje_tamano: equ $-mensaje
 
 section .bss
-	db variable; almaceramiento de la tecla
-	recla resb 1
-	enter resb 1
+	tecla resb 2
 
 
 ;bandera de texto
@@ -15,8 +13,6 @@ section .text
 	global _mensaje
 	global _registro_datos
 	global _tecla
-	global _enter
-	global _guardar_enter
 
 _start:
 	;impresion de texto 1
@@ -29,19 +25,19 @@ _start:
 _mensaje:
 	syscall ;syscall para primer bloque
 
+	;se captura la tecla pulsada y el enter
 	mov rax,0
 	mov rdi,0
-	mov rsi,variable
-	mov rdx,N
-	
+	mov rsi,tecla
+	mov rdx,2
+
 _registro_datos:; bandera para datos
 	syscall ;syscall para segundo bloque
 
-_tecla: ;bandera para tecla
-	;bloque para capturar el enter
-	mov rax,0
-	mov rdi,0
-	mov rsi,enter
-	mov rdx,N
+_tecla: ;bandera para verificar la tecla
 
-_guardar_enter:
+	;liberacion de recursos
+	mov rax,60
+	mov rdi,0
+	syscall
+
