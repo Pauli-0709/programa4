@@ -3,6 +3,9 @@ section .data
 	mensaje: db 'presione una tecla y luego enter' ,0xa
 	mensaje_tamano: equ $-mensaje
 
+	mensaje2: db 'usted preciono la tecla: '
+	mensaje2_tamano: equ $-mensaje2
+
 section .bss
 	tecla resb 2
 
@@ -42,6 +45,12 @@ _tecla: ;bandera para verificar la tecla
 	movzx rax, byte [tecla +1]  ;se carga segundo byte en rax
 	cmp al, 0x0A   ;comparacion de registros
 	jne _error_ingreso ;sino se preciona enter se repite mensaje 1 "precione la tecla y luego enter"
+
+;bloque para imprimir en pantalla
+	mov rax,1
+	mov rdi,1
+	mov rsi,mensaje2
+	mov rdx,mensaje2_tamano
 
 ;-----------------cierra del codigo
 	;liberacion de recursos
