@@ -17,6 +17,8 @@ section .text
 	global _registro_datos
 	global _tecla
 	global _error_ingreso
+	global _mensaje2
+	global _cierre
 
 _start:
 _error_ingreso:
@@ -51,6 +53,17 @@ _tecla: ;bandera para verificar la tecla
 	mov rdi,1
 	mov rsi,mensaje2
 	mov rdx,mensaje2_tamano
+_mensaje2_tamano:
+	syscall
+
+;bloque para imprimir tecla
+	mov rax,1
+	mov rdi,1
+	mov rsi,byte[tecla]
+	mov rdx,1
+
+_cierre:
+	syscall
 
 ;-----------------cierra del codigo
 	;liberacion de recursos
