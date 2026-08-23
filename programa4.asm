@@ -2,7 +2,12 @@
 section .data
 	mensaje: db 'presione una tecla y luego enter' ,0xa
 	mensaje_tamano: equ $-mensaje
-	db variable ;almacenamiento de la tecla
+
+section .bss
+	db variable; almaceramiento de la tecla
+	recla resb 1
+	enter resb 1
+
 
 ;bandera de texto
 section .text
