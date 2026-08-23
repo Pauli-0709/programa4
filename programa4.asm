@@ -41,7 +41,7 @@ _tecla: ;bandera para verificar la tecla
 ;bloque para verificar si se pulso el enter en posicion 2 de tecla
 	movzx rax, byte [tecla +1]  ;se carga segundo byte en rax
 	cmp al, 0x0A   ;comparacion de registros
-	jne error_ingreso ;sino se preciona enter se repite mensaje 1 "precione la tecla y luego enter"
+	jne _error_ingreso ;sino se preciona enter se repite mensaje 1 "precione la tecla y luego enter"
 
 ;-----------------cierra del codigo
 	;liberacion de recursos
