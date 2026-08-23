@@ -18,7 +18,7 @@ _start:
 	;impresion de texto 1
 	mov rax,1
 	mov rdi,1
-	mov rsi,mensaje1
+	mov rsi,mensaje
 	mov rdx,mensaje_tamano
 
 	;inicio de la segunda bandera
