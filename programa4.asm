@@ -13,8 +13,10 @@ section .text
 	global _mensaje
 	global _registro_datos
 	global _tecla
+	global _error_ingreso
 
 _start:
+_error_ingreso:
 	;impresion de texto 1
 	mov rax,1
 	mov rdi,1
@@ -36,6 +38,12 @@ _registro_datos:; bandera para datos
 
 _tecla: ;bandera para verificar la tecla
 
+;bloque para verificar si se pulso el enter en posicion 2 de tecla
+	movzx rax, byte [tecla +1]  ;se carga segundo byte en rax
+	cmp al, 0x0A   ;comparacion de registros
+	jne error_ingreso ;sino se preciona enter se repite mensaje 1 "precione la tecla y luego enter"
+
+;-----------------cierra del codigo
 	;liberacion de recursos
 	mov rax,60
 	mov rdi,0
