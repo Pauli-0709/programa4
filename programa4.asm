@@ -59,7 +59,7 @@ _mensaje2_tamano:
 ;bloque para imprimir tecla
 	mov rax,1
 	mov rdi,1
-	movzx rsi,byte[tecla]
+	mov rsi,tecla
 	mov rdx,1
 
 _cierre:
